@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package org.axonframework.samples.bank.api.bankaccount;
+package org.axonframework.samples.bank.api.banktransfer.event;
 
 import lombok.Value;
 
 @Value
-public class SourceBankAccountNotFoundEvent {
+public class BankTransferCompletedEvent {
 
     private String bankTransferId;
 }

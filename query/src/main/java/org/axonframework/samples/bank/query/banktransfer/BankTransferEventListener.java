@@ -17,9 +17,9 @@
 package org.axonframework.samples.bank.query.banktransfer;
 
 import org.axonframework.eventhandling.EventHandler;
-import org.axonframework.samples.bank.api.banktransfer.BankTransferCompletedEvent;
-import org.axonframework.samples.bank.api.banktransfer.BankTransferCreatedEvent;
-import org.axonframework.samples.bank.api.banktransfer.BankTransferFailedEvent;
+import org.axonframework.samples.bank.api.banktransfer.event.BankTransferCompletedEvent;
+import org.axonframework.samples.bank.api.banktransfer.event.BankTransferCreatedEvent;
+import org.axonframework.samples.bank.api.banktransfer.event.BankTransferFailedEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

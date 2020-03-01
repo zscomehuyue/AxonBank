@@ -14,12 +14,19 @@
  * limitations under the License.
  */
 
-package org.axonframework.samples.bank.api.banktransfer;
+package org.axonframework.samples.bank.api.bankaccount.command;
 
 import lombok.Value;
+import org.axonframework.commandhandling.TargetAggregateIdentifier;
 
+/**
+ * 借记
+ */
 @Value
-public class BankTransferCompletedEvent {
+public class DebitSourceBankAccountCommand {
 
+    @TargetAggregateIdentifier
+    private String bankAccountId;
     private String bankTransferId;
+    private long amount;
 }

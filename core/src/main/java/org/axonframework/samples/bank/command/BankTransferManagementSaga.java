@@ -21,10 +21,13 @@ import org.axonframework.commandhandling.callbacks.LoggingCallback;
 import org.axonframework.eventhandling.saga.EndSaga;
 import org.axonframework.eventhandling.saga.SagaEventHandler;
 import org.axonframework.eventhandling.saga.StartSaga;
-import org.axonframework.samples.bank.api.bankaccount.*;
-import org.axonframework.samples.bank.api.banktransfer.BankTransferCreatedEvent;
-import org.axonframework.samples.bank.api.banktransfer.MarkBankTransferCompletedCommand;
-import org.axonframework.samples.bank.api.banktransfer.MarkBankTransferFailedCommand;
+import org.axonframework.samples.bank.api.bankaccount.command.CreditDestinationBankAccountCommand;
+import org.axonframework.samples.bank.api.bankaccount.command.DebitSourceBankAccountCommand;
+import org.axonframework.samples.bank.api.bankaccount.command.ReturnMoneyOfFailedBankTransferCommand;
+import org.axonframework.samples.bank.api.bankaccount.event.*;
+import org.axonframework.samples.bank.api.banktransfer.event.BankTransferCreatedEvent;
+import org.axonframework.samples.bank.api.banktransfer.command.MarkBankTransferCompletedCommand;
+import org.axonframework.samples.bank.api.banktransfer.command.MarkBankTransferFailedCommand;
 import org.axonframework.spring.stereotype.Saga;
 import org.springframework.beans.factory.annotation.Autowired;
 

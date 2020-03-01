@@ -19,23 +19,28 @@ package org.axonframework.samples.bank.command;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventhandling.EventHandler;
-import org.axonframework.samples.bank.api.banktransfer.BankTransferCompletedEvent;
-import org.axonframework.samples.bank.api.banktransfer.BankTransferCreatedEvent;
-import org.axonframework.samples.bank.api.banktransfer.BankTransferFailedEvent;
-import org.axonframework.samples.bank.api.banktransfer.CreateBankTransferCommand;
-import org.axonframework.samples.bank.api.banktransfer.MarkBankTransferCompletedCommand;
-import org.axonframework.samples.bank.api.banktransfer.MarkBankTransferFailedCommand;
+import org.axonframework.samples.bank.api.banktransfer.event.BankTransferCompletedEvent;
+import org.axonframework.samples.bank.api.banktransfer.event.BankTransferCreatedEvent;
+import org.axonframework.samples.bank.api.banktransfer.event.BankTransferFailedEvent;
+import org.axonframework.samples.bank.api.banktransfer.command.CreateBankTransferCommand;
+import org.axonframework.samples.bank.api.banktransfer.command.MarkBankTransferCompletedCommand;
+import org.axonframework.samples.bank.api.banktransfer.command.MarkBankTransferFailedCommand;
 import org.axonframework.spring.stereotype.Aggregate;
 
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 
+/**
+ * 银行转账
+ */
 @Aggregate
 public class BankTransfer {
 
     @AggregateIdentifier
-    private String BankTransferId;
+    private String bankTransferId;
     private String sourceBankAccountId;
     private String destinationBankAccountId;
+
+    //数量
     private long amount;
     private Status status;
 
@@ -63,7 +68,7 @@ public class BankTransfer {
 
     @EventHandler
     public void on(BankTransferCreatedEvent event) throws Exception {
-        this.BankTransferId = event.getBankTransferId();
+        this.bankTransferId = event.getBankTransferId();
         this.sourceBankAccountId = event.getSourceBankAccountId();
         this.destinationBankAccountId = event.getDestinationBankAccountId();
         this.amount = event.getAmount();

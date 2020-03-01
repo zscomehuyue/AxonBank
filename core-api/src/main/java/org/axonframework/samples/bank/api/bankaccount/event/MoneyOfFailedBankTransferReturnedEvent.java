@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.axonframework.samples.bank.api.bankaccount;
+package org.axonframework.samples.bank.api.bankaccount.event;
 
-public class MoneyDepositedEvent extends MoneyAddedEvent {
+public class MoneyOfFailedBankTransferReturnedEvent extends MoneyAddedEvent {
 
-    public MoneyDepositedEvent(String id, long amountOfMoneyDeposited) {
-        super(id, amountOfMoneyDeposited);
+    public MoneyOfFailedBankTransferReturnedEvent(String bankAccountId, long amountOfMoneyDeposited) {
+        super(bankAccountId, amountOfMoneyDeposited);
     }
 }

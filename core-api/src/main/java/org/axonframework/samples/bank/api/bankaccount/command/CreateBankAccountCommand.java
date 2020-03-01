@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package org.axonframework.samples.bank.api.bankaccount;
+package org.axonframework.samples.bank.api.bankaccount.command;
 
-import lombok.Getter;
+import lombok.Value;
+import org.axonframework.commandhandling.TargetAggregateIdentifier;
 
-@Getter
-public class SourceBankAccountDebitedEvent extends MoneySubtractedEvent {
+import javax.validation.constraints.Min;
 
-    private String bankTransferId;
+@Value
+public class CreateBankAccountCommand {
 
-    public SourceBankAccountDebitedEvent(String id, long amountOfMoney, String bankTransferId) {
-        super(id, amountOfMoney);
-
-        this.bankTransferId = bankTransferId;
-    }
+    @TargetAggregateIdentifier
+    private String bankAccountId;
+    @Min(value = 0, message = "Overdraft limit must not be less than zero")
+    private long overdraftLimit;
 }

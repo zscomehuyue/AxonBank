@@ -18,12 +18,12 @@ package org.axonframework.samples.bank.command;
 
 import org.axonframework.messaging.interceptors.BeanValidationInterceptor;
 import org.axonframework.messaging.interceptors.JSR303ViolationException;
-import org.axonframework.samples.bank.api.bankaccount.BankAccountCreatedEvent;
-import org.axonframework.samples.bank.api.bankaccount.CreateBankAccountCommand;
-import org.axonframework.samples.bank.api.bankaccount.DepositMoneyCommand;
-import org.axonframework.samples.bank.api.bankaccount.MoneyDepositedEvent;
-import org.axonframework.samples.bank.api.bankaccount.MoneyWithdrawnEvent;
-import org.axonframework.samples.bank.api.bankaccount.WithdrawMoneyCommand;
+import org.axonframework.samples.bank.api.bankaccount.event.BankAccountCreatedEvent;
+import org.axonframework.samples.bank.api.bankaccount.command.CreateBankAccountCommand;
+import org.axonframework.samples.bank.api.bankaccount.command.DepositMoneyCommand;
+import org.axonframework.samples.bank.api.bankaccount.event.MoneyDepositedEvent;
+import org.axonframework.samples.bank.api.bankaccount.event.MoneyWithdrawnEvent;
+import org.axonframework.samples.bank.api.bankaccount.command.WithdrawMoneyCommand;
 import org.axonframework.test.aggregate.AggregateTestFixture;
 import org.axonframework.test.aggregate.FixtureConfiguration;
 import org.junit.*;

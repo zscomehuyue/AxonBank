@@ -21,7 +21,10 @@ import org.axonframework.commandhandling.model.Aggregate;
 import org.axonframework.commandhandling.model.AggregateNotFoundException;
 import org.axonframework.commandhandling.model.Repository;
 import org.axonframework.eventhandling.EventBus;
-import org.axonframework.samples.bank.api.bankaccount.*;
+import org.axonframework.samples.bank.api.bankaccount.command.CreditDestinationBankAccountCommand;
+import org.axonframework.samples.bank.api.bankaccount.command.DebitSourceBankAccountCommand;
+import org.axonframework.samples.bank.api.bankaccount.event.DestinationBankAccountNotFoundEvent;
+import org.axonframework.samples.bank.api.bankaccount.event.SourceBankAccountNotFoundEvent;
 
 import static org.axonframework.eventhandling.GenericEventMessage.asEventMessage;
 
@@ -52,9 +55,7 @@ public class BankAccountCommandHandler {
             Aggregate<BankAccount> bankAccountAggregate = repository.load(command.getBankAccountId());
             bankAccountAggregate.execute(bankAccount -> bankAccount
                     .credit(command.getAmount(), command.getBankTransferId()));
-
-        }
-        catch (AggregateNotFoundException exception) {
+        } catch (AggregateNotFoundException exception) {
             eventBus.publish(asEventMessage(new DestinationBankAccountNotFoundEvent(command.getBankTransferId())));
         }
     }

@@ -16,12 +16,12 @@
 
 package org.axonframework.samples.bank.command;
 
-import org.axonframework.samples.bank.api.banktransfer.BankTransferCompletedEvent;
-import org.axonframework.samples.bank.api.banktransfer.BankTransferCreatedEvent;
-import org.axonframework.samples.bank.api.banktransfer.BankTransferFailedEvent;
-import org.axonframework.samples.bank.api.banktransfer.CreateBankTransferCommand;
-import org.axonframework.samples.bank.api.banktransfer.MarkBankTransferCompletedCommand;
-import org.axonframework.samples.bank.api.banktransfer.MarkBankTransferFailedCommand;
+import org.axonframework.samples.bank.api.banktransfer.event.BankTransferCompletedEvent;
+import org.axonframework.samples.bank.api.banktransfer.event.BankTransferCreatedEvent;
+import org.axonframework.samples.bank.api.banktransfer.event.BankTransferFailedEvent;
+import org.axonframework.samples.bank.api.banktransfer.command.CreateBankTransferCommand;
+import org.axonframework.samples.bank.api.banktransfer.command.MarkBankTransferCompletedCommand;
+import org.axonframework.samples.bank.api.banktransfer.command.MarkBankTransferFailedCommand;
 import org.axonframework.test.aggregate.AggregateTestFixture;
 import org.axonframework.test.aggregate.FixtureConfiguration;
 import org.junit.*;

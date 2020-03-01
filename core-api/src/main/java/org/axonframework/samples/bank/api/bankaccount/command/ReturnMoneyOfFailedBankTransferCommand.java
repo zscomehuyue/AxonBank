@@ -14,17 +14,15 @@
  * limitations under the License.
  */
 
-package org.axonframework.samples.bank.api.banktransfer;
+package org.axonframework.samples.bank.api.bankaccount.command;
 
 import lombok.Value;
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
 
 @Value
-public class CreateBankTransferCommand {
+public class ReturnMoneyOfFailedBankTransferCommand {
 
     @TargetAggregateIdentifier
-    private String bankTransferId;
-    private String sourceBankAccountId;
-    private String destinationBankAccountId;
+    private String bankAccountId;
     private long amount;
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.axonframework.samples.bank.api.bankaccount;
+package org.axonframework.samples.bank.api.bankaccount.event;
 
 import lombok.Value;
 

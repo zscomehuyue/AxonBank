@@ -14,15 +14,12 @@
  * limitations under the License.
  */
 
-package org.axonframework.samples.bank.api.bankaccount;
+package org.axonframework.samples.bank.api.bankaccount.event;
 
 import lombok.Value;
-import lombok.experimental.NonFinal;
 
 @Value
-@NonFinal
-public abstract class MoneyAddedEvent {
+public class SourceBankAccountNotFoundEvent {
 
-    private String bankAccountId;
-    private long amount;
+    private String bankTransferId;
 }

@@ -14,11 +14,18 @@
  * limitations under the License.
  */
 
-package org.axonframework.samples.bank.api.bankaccount;
+package org.axonframework.samples.bank.api.bankaccount.event;
 
-public class MoneyWithdrawnEvent extends MoneySubtractedEvent {
+import lombok.Getter;
 
-    public MoneyWithdrawnEvent(String bankAccountId, long amountOfMoney) {
-        super(bankAccountId, amountOfMoney);
+@Getter
+public class DestinationBankAccountCreditedEvent extends MoneyAddedEvent {
+
+    private String bankTransferId;
+
+    public DestinationBankAccountCreditedEvent(String id, long amount, String bankTransferId) {
+        super(id, amount);
+
+        this.bankTransferId = bankTransferId;
     }
 }

@@ -1,16 +1,16 @@
 package org.axonframework.samples.bank.command;
 
-import org.axonframework.samples.bank.api.bankaccount.CreditDestinationBankAccountCommand;
-import org.axonframework.samples.bank.api.bankaccount.DebitSourceBankAccountCommand;
-import org.axonframework.samples.bank.api.bankaccount.DestinationBankAccountCreditedEvent;
-import org.axonframework.samples.bank.api.bankaccount.DestinationBankAccountNotFoundEvent;
-import org.axonframework.samples.bank.api.bankaccount.ReturnMoneyOfFailedBankTransferCommand;
-import org.axonframework.samples.bank.api.bankaccount.SourceBankAccountDebitRejectedEvent;
-import org.axonframework.samples.bank.api.bankaccount.SourceBankAccountDebitedEvent;
-import org.axonframework.samples.bank.api.bankaccount.SourceBankAccountNotFoundEvent;
-import org.axonframework.samples.bank.api.banktransfer.BankTransferCreatedEvent;
-import org.axonframework.samples.bank.api.banktransfer.MarkBankTransferCompletedCommand;
-import org.axonframework.samples.bank.api.banktransfer.MarkBankTransferFailedCommand;
+import org.axonframework.samples.bank.api.bankaccount.command.CreditDestinationBankAccountCommand;
+import org.axonframework.samples.bank.api.bankaccount.command.DebitSourceBankAccountCommand;
+import org.axonframework.samples.bank.api.bankaccount.event.DestinationBankAccountCreditedEvent;
+import org.axonframework.samples.bank.api.bankaccount.event.DestinationBankAccountNotFoundEvent;
+import org.axonframework.samples.bank.api.bankaccount.command.ReturnMoneyOfFailedBankTransferCommand;
+import org.axonframework.samples.bank.api.bankaccount.event.SourceBankAccountDebitRejectedEvent;
+import org.axonframework.samples.bank.api.bankaccount.event.SourceBankAccountDebitedEvent;
+import org.axonframework.samples.bank.api.bankaccount.event.SourceBankAccountNotFoundEvent;
+import org.axonframework.samples.bank.api.banktransfer.event.BankTransferCreatedEvent;
+import org.axonframework.samples.bank.api.banktransfer.command.MarkBankTransferCompletedCommand;
+import org.axonframework.samples.bank.api.banktransfer.command.MarkBankTransferFailedCommand;
 import org.axonframework.test.saga.FixtureConfiguration;
 import org.axonframework.test.saga.SagaTestFixture;
 import org.junit.*;

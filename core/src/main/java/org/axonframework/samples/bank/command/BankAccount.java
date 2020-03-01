@@ -19,7 +19,11 @@ package org.axonframework.samples.bank.command;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
-import org.axonframework.samples.bank.api.bankaccount.*;
+import org.axonframework.samples.bank.api.bankaccount.command.CreateBankAccountCommand;
+import org.axonframework.samples.bank.api.bankaccount.command.DepositMoneyCommand;
+import org.axonframework.samples.bank.api.bankaccount.command.ReturnMoneyOfFailedBankTransferCommand;
+import org.axonframework.samples.bank.api.bankaccount.command.WithdrawMoneyCommand;
+import org.axonframework.samples.bank.api.bankaccount.event.*;
 import org.axonframework.spring.stereotype.Aggregate;
 
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
@@ -29,7 +33,15 @@ public class BankAccount {
 
     @AggregateIdentifier
     private String id;
+
+    /**
+     * 透支限额
+     */
     private long overdraftLimit;
+
+    /**
+     * 余额
+     */
     private long balanceInCents;
 
     @SuppressWarnings("unused")
@@ -41,11 +53,17 @@ public class BankAccount {
         apply(new BankAccountCreatedEvent(command.getBankAccountId(), command.getOverdraftLimit()));
     }
 
+    /**
+     * 存款
+     */
     @CommandHandler
     public void deposit(DepositMoneyCommand command) {
         apply(new MoneyDepositedEvent(id, command.getAmountOfMoney()));
     }
 
+    /**
+     * 冲账
+     */
     @CommandHandler
     public void withdraw(WithdrawMoneyCommand command) {
         if (command.getAmountOfMoney() <= balanceInCents + overdraftLimit) {
@@ -53,19 +71,30 @@ public class BankAccount {
         }
     }
 
+    /**
+     * 1、Debit：借记，借方。
+     * 2、credit：借款，贷款。
+     *
+     * 记入 借记
+     */
     public void debit(long amount, String bankTransferId) {
         if (amount <= balanceInCents + overdraftLimit) {
             apply(new SourceBankAccountDebitedEvent(id, amount, bankTransferId));
-        }
-        else {
+        } else {
             apply(new SourceBankAccountDebitRejectedEvent(bankTransferId));
         }
     }
 
+    /**
+     * 赊购;赊欠;借款;贷款
+     */
     public void credit(long amount, String bankTransferId) {
         apply(new DestinationBankAccountCreditedEvent(id, amount, bankTransferId));
     }
 
+    /**
+     * 退款
+     */
     @CommandHandler
     public void returnMoney(ReturnMoneyOfFailedBankTransferCommand command) {
         apply(new MoneyOfFailedBankTransferReturnedEvent(id, command.getAmount()));
