@@ -17,14 +17,15 @@
 package org.axonframework.samples.bank.web;
 
 import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.axonframework.samples.bank.api.bankaccount.CreateBankAccountCommand;
-import org.axonframework.samples.bank.api.bankaccount.DepositMoneyCommand;
-import org.axonframework.samples.bank.api.bankaccount.WithdrawMoneyCommand;
+import org.axonframework.samples.bank.api.bankaccount.command.CreateBankAccountCommand;
+import org.axonframework.samples.bank.api.bankaccount.command.DepositMoneyCommand;
+import org.axonframework.samples.bank.api.bankaccount.command.WithdrawMoneyCommand;
 import org.axonframework.samples.bank.query.bankaccount.BankAccountEntry;
 import org.axonframework.samples.bank.query.bankaccount.BankAccountRepository;
 import org.axonframework.samples.bank.web.dto.BankAccountDto;
 import org.axonframework.samples.bank.web.dto.DepositDto;
 import org.axonframework.samples.bank.web.dto.WithdrawalDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
@@ -39,6 +40,8 @@ public class BankAccountController {
     private final CommandGateway commandGateway;
     private final BankAccountRepository bankAccountRepository;
 
+
+    @Autowired
     public BankAccountController(CommandGateway commandGateway, BankAccountRepository bankAccountRepository) {
         this.commandGateway = commandGateway;
         this.bankAccountRepository = bankAccountRepository;

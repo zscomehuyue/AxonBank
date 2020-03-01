@@ -18,10 +18,11 @@ package org.axonframework.samples.bank.web;
 
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.axonframework.samples.bank.api.banktransfer.CreateBankTransferCommand;
+import org.axonframework.samples.bank.api.banktransfer.command.CreateBankTransferCommand;
 import org.axonframework.samples.bank.query.banktransfer.BankTransferEntry;
 import org.axonframework.samples.bank.query.banktransfer.BankTransferRepository;
 import org.axonframework.samples.bank.web.dto.BankTransferDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
@@ -33,6 +34,7 @@ import java.util.UUID;
 @Slf4j
 public class BankTransferController {
 
+    @Autowired
     private final CommandGateway commandGateway;
     private final BankTransferRepository bankTransferRepository;
 

@@ -34,6 +34,7 @@ public class AxonConfig {
 
     @Autowired
     private AxonConfiguration axonConfiguration;
+
     @Autowired
     private EventBus eventBus;
 

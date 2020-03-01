@@ -55,20 +55,20 @@ public class BankTransferManagementSaga {
         this.amount = event.getAmount();
 
         DebitSourceBankAccountCommand command = new DebitSourceBankAccountCommand(event.getSourceBankAccountId(),
-                                                                                  event.getBankTransferId(),
-                                                                                  event.getAmount());
+                        event.getBankTransferId(),
+                        event.getAmount());
         commandBus.dispatch(asCommandMessage(command), LoggingCallback.INSTANCE);
     }
 
-    @SagaEventHandler(associationProperty = "bankTransferId")
     @EndSaga
+    @SagaEventHandler(associationProperty = "bankTransferId")
     public void on(SourceBankAccountNotFoundEvent event) {
         MarkBankTransferFailedCommand markFailedCommand = new MarkBankTransferFailedCommand(event.getBankTransferId());
         commandBus.dispatch(asCommandMessage(markFailedCommand), LoggingCallback.INSTANCE);
     }
 
-    @SagaEventHandler(associationProperty = "bankTransferId")
     @EndSaga
+    @SagaEventHandler(associationProperty = "bankTransferId")
     public void on(SourceBankAccountDebitRejectedEvent event) {
         MarkBankTransferFailedCommand markFailedCommand = new MarkBankTransferFailedCommand(event.getBankTransferId());
         commandBus.dispatch(asCommandMessage(markFailedCommand), LoggingCallback.INSTANCE);
@@ -77,13 +77,13 @@ public class BankTransferManagementSaga {
     @SagaEventHandler(associationProperty = "bankTransferId")
     public void on(SourceBankAccountDebitedEvent event) {
         CreditDestinationBankAccountCommand command = new CreditDestinationBankAccountCommand(destinationBankAccountId,
-                                                                                              event.getBankTransferId(),
-                                                                                              event.getAmount());
+                event.getBankTransferId(),
+                event.getAmount());
         commandBus.dispatch(asCommandMessage(command), LoggingCallback.INSTANCE);
     }
 
-    @SagaEventHandler(associationProperty = "bankTransferId")
     @EndSaga
+    @SagaEventHandler(associationProperty = "bankTransferId")
     public void on(DestinationBankAccountNotFoundEvent event) {
         ReturnMoneyOfFailedBankTransferCommand returnMoneyCommand = new ReturnMoneyOfFailedBankTransferCommand(
                 sourceBankAccountId,
