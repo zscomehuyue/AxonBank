@@ -14,7 +14,7 @@ public class LogAop {
     public void pointcut() {
     }
 
-    @Around("pointcut()")
+//    @Around("pointcut()")
     public Object around(ProceedingJoinPoint pj) {
         MethodSignature methodSignature = (MethodSignature) pj.getSignature();
         String name = pj.getTarget().getClass().getSimpleName();

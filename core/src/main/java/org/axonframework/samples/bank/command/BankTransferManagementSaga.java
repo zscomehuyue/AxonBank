@@ -47,6 +47,10 @@ public class BankTransferManagementSaga {
     private String destinationBankAccountId;
     private long amount;
 
+    /**
+     * 转账开始
+     * @param event
+     */
     @StartSaga
     @SagaEventHandler(associationProperty = "bankTransferId")
     public void on(BankTransferCreatedEvent event) {

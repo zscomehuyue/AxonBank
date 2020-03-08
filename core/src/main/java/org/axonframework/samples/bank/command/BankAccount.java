@@ -75,7 +75,7 @@ public class BankAccount {
      * 1、Debit：借记，借方。
      * 2、credit：借款，贷款。
      *
-     * 记入 借记
+     * 记入 借记 ,消费金额
      */
     public void debit(long amount, String bankTransferId) {
         if (amount <= balanceInCents + overdraftLimit) {
